@@ -25,17 +25,17 @@
 
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
       max-width: 1200px;
       margin: 0 auto;
     }
 
     .card {
       background: #ffffff;
-      border-radius: 16px;
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       text-decoration: none;
       color: inherit;
@@ -46,38 +46,37 @@
 
     .card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
     }
 
-    /* Wadah Gambar agar Proporsional */
+    /* Wadah Gambar Persegi Konsisten (1:1) */
     .card-image-wrapper {
       width: 100%;
-      height: 280px;
-      background-color: #ececec;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      aspect-ratio: 1 / 1; /* Memaksa rasio kotak presisi */
+      background-color: #18181b;
+      position: relative;
       overflow: hidden;
     }
 
     .card img {
       width: 100%;
       height: 100%;
-      object-fit: contain; /* Gambar akan tampil utuh 100% tanpa terpotong */
+      object-fit: cover; /* Mengisi seluruh area kotak secara rapi dan simetris */
       display: block;
     }
 
-    /* Padding Teks Diperbaiki Agar Berjarak Rapi */
+    /* Teks Caption Rapi dengan Padding Pas */
     .card-content {
-      padding: 18px 20px 20px 20px;
+      padding: 14px 16px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 4px;
       flex-grow: 1;
+      background: #ffffff;
     }
 
     .card-publisher {
-      font-size: 11px;
+      font-size: 10px;
       color: #71717a;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -86,8 +85,8 @@
 
     .card-title {
       margin: 0;
-      font-size: 13px;
-      line-height: 1.5;
+      font-size: 12px;
+      line-height: 1.4;
       color: #27272a;
       font-weight: 500;
       display: -webkit-box;
@@ -136,31 +135,22 @@
         for (let url of daftarLink) {
           try {
             let cleanUrl = url.split('?')[0];
-            let gambarUrl = '';
 
-            // Trik khusus untuk link Instagram: ambil gambar utuh dari media embed resmi
-            if (cleanUrl.includes('instagram.com/p/') || cleanUrl.includes('instagram.com/reel/')) {
-              if (!cleanUrl.endsWith('/')) cleanUrl += '/';
-              gambarUrl = `${cleanUrl}media/?size=l`;
-            }
-
-            // Ambil metadata judul & publisher lewat Microlink
+            // Pemanggilan API murni yang stabil
             const response = await fetch(`https://api.microlink.io?url=${encodeURIComponent(cleanUrl)}`);
             const result = await response.json();
+            
+            if (result.status !== 'success') continue;
+            
             const data = result.data || {};
-
-            // Jika bukan Instagram atau trik gambar Instagram gagal, gunakan gambar dari Microlink
-            if (!gambarUrl) {
-              gambarUrl = data.image ? data.image.url : 'https://via.placeholder.com/400x300?text=No+Image';
-            }
-
+            const gambar = data.image ? data.image.url : 'https://via.placeholder.com/400x400?text=No+Image';
             const judul = data.title || 'Tanpa Judul';
             const sumber = data.publisher || 'Instagram';
 
             const kartuHTML = `
               <a href="${url}" target="_blank" class="card">
                 <div class="card-image-wrapper">
-                  <img src="${gambarUrl}" alt="${judul}" loading="lazy" onerror="this.src='${data.image?.url || ''}'">
+                  <img src="${gambar}" alt="${judul}" loading="lazy">
                 </div>
                 <div class="card-content">
                   <span class="card-publisher">${sumber}</span>
