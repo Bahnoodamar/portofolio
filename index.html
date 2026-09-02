@@ -47,7 +47,12 @@
 
   /* Styling kartu karya - Bagian GAMBAR */
   .card img {
-    width: 100%;
+  width: 100%;
+  height: 250px;
+  object-fit: contain; /* Memastikan seluruh isi gambar masuk ke dalam kotak */
+  background-color: #f0f0f0; /* Memberi latar abu-abu lembut jika ada sisa ruang */
+  display: block;
+}
     
     /* --- PENGATURAN GAMBAR UTUH --- */
     height: 250px; /* Atur tinggi kartu di sini */
@@ -133,7 +138,12 @@
         // Ambil metadata gambar & judul dari setiap link
         for (const url of daftarLink) {
           try {
-            const response = await fetch(`https://api.microlink.io?url=${encodeURIComponent(url)}`);
+            // KODE BARU:
+            const response = await fetch(`https://api.microlink.io?url=${encodeURIComponent(url)}&screenshot=true&meta=false`);
+            const result = await response.json();
+            const gambar = result.data.screenshot ? result.data.screenshot.url : 'https://via.placeholder.com/400x200?text=No+Image';
+            // BATAS
+            
             const result = await response.json();
             const data = result.data;
 
