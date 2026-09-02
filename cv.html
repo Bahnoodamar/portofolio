@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV - Aldila Dwiki Himawan</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #f4f4f5;
+      margin: 0;
+      padding: 0;
+      color: #18181b;
+    }
+
+    /* --- STYLING NAVBAR --- */
+    .navbar {
+      background-color: #ffffff;
+      border-bottom: 1px solid #e4e4e7;
+      padding: 16px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    }
+
+    .navbar-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 18px;
+      color: #18181b;
+      text-decoration: none;
+    }
+
+    .navbar-menu {
+      display: flex;
+      gap: 16px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar-menu a {
+      text-decoration: none;
+      color: #52525b;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .navbar-menu a:hover,
+    .navbar-menu a.active {
+      color: #18181b;
+      font-weight: 600;
+    }
+
+    /* --- STYLING KONTEN CV --- */
+    .page-wrapper {
+      padding: 40px 20px;
+    }
+
+    .cv-card {
+      background: #ffffff;
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .cv-container {
+      font-family: inherit;
+      color: #18181b;
+      line-height: 1.5;
+    }
+
+    .cv-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .cv-name {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin: 0 0 5px 0;
+    }
+
+    .cv-title {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin: 0 0 15px 0;
+      opacity: 0.85;
+    }
+
+    .cv-contact {
+      font-size: 13px;
+      border-top: 1px solid #e4e4e7;
+      border-bottom: 1px solid #e4e4e7;
+      padding: 8px 0;
+      margin-bottom: 25px;
+      color: #52525b;
+    }
+
+    .cv-contact a {
+      color: #18181b;
+      text-decoration: underline;
+    }
+
+    .cv-summary {
+      font-size: 13.5px;
+      margin-bottom: 25px;
+      text-align: justify;
+      color: #3f3f46;
+    }
+
+    .cv-section-title {
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      border-bottom: 2px solid #18181b;
+      padding-bottom: 4px;
+      margin: 30px 0 15px 0;
+    }
+
+    .cv-subsection-title {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin: 20px 0 10px 0;
+      color: #27272a;
+    }
+
+    .cv-item {
+      margin-bottom: 20px;
+    }
+
+    .cv-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .cv-company {
+      font-size: 14px;
+    }
+
+    .cv-year {
+      font-size: 13.5px;
+      font-weight: 700;
+    }
+
+    .cv-role {
+      font-size: 12.5px;
+      font-style: italic;
+      color: #71717a;
+      margin-bottom: 6px;
+    }
+
+    .cv-details-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 4px;
+    }
+
+    .cv-details-table td {
+      vertical-align: top;
+      padding: 3px 0;
+      font-size: 13px;
+    }
+
+    .cv-details-table .task-cell {
+      width: 65%;
+      padding-right: 15px;
+    }
+
+    .cv-details-table .tool-cell {
+      width: 35%;
+      text-align: right;
+      font-size: 12.5px;
+      color: #71717a;
+    }
+
+    .cv-list {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .cv-list li {
+      margin-bottom: 3px;
+    }
+
+    .cv-note {
+      font-size: 12px;
+      color: #71717a;
+      margin-top: 6px;
+      padding-left: 18px;
+    }
+
+    @media (max-width: 600px) {
+      .cv-card {
+        padding: 20px 15px;
+      }
+      .cv-details-table td {
+        display: block;
+        width: 100% !important;
+        text-align: left !important;
+      }
+      .cv-details-table .tool-cell {
+        padding-left: 18px;
+        margin-bottom: 8px;
+        font-style: italic;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR ATAS -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="navbar-brand">Aldila Dwiki</a>
+      <ul class="navbar-menu">
+        <li><a href="index.html">Portofolio Galeri</a></li>
+        <li><a href="cv.html" class="active">Curriculum Vitae</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- KONTEN CV DALAM CARD -->
+  <div class="page-wrapper">
+    <div class="cv-card">
+      <div class="cv-container">
+        
+        <!-- HEADER -->
+        <div class="cv-header">
+          <h1 class="cv-name">ALDILA DWIKI HIMAWAN</h1>
+          <div class="cv-title">DESAINER GRAFIS</div>
+          <div class="cv-contact">
+            Cendrawasih IV blok FB-15 GKA, Gresik &nbsp;|&nbsp; 
+            aldiladwikihimawan@gmail.com<br>
+            web portofolio : <a href="https://aldiladwiki.my.canva.site" target="_blank">aldiladwiki.my.canva.site</a> &nbsp;|&nbsp; 
+            0896-7741-1243
+          </div>
+        </div>
+
+        <!-- SUMMARY -->
+        <div class="cv-summary">
+          Saya Desainer Grafis dengan berbagai pengalaman kerja. Memulai pekerjaan dari tahun 2015. Dari mulai visual grafis, hingga terkait furnitur dan interior. Juga pernah mengurus produk di marketplace dan mengatur tampilan visual toko di marketplace.
+        </div>
+
+        <!-- PENGALAMAN KERJA -->
+        <div class="cv-section-title">PENGALAMAN KERJA</div>
+
+        <!-- FREELANCE -->
+        <div class="cv-subsection-title">FREELANCE</div>
+
+        <div class="cv-item">
+          <div class="cv-item-header">
+            <span class="cv-company">Fjord Motion</span>
+            <span class="cv-year">2025</span>
+          </div>
+          <div class="cv-role">Desainer Grafis</div>
+          <table class="cv-details-table">
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Membuat infografis panjang atau slide sosial media</li></ul></td>
+              <td class="tool-cell">Adobe Illustrator + Canva</td>
+            </tr>
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Melayout majalah digital</li></ul></td>
+              <td class="tool-cell">Adobe Indesign</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="cv-item">
+          <div class="cv-item-header">
+            <span class="cv-company">Herodeco</span>
+            <span class="cv-year">2025</span>
+          </div>
+          <div class="cv-role">Desainer Grafis</div>
+          <table class="cv-details-table">
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Manipulasi foto (digital imaging) dan layout kalender</li></ul></td>
+              <td class="tool-cell">Adobe Illustrator + Adobe Photoshop</td>
+            </tr>
+          </table>
+          <div class="cv-note">
+            Dan beberapa proyek pesanan desain lainnya yang dikerjakan menggunakan Adobe Illustrator, Photoshop hingga Sketchup
+          </div>
+        </div>
+
+        <!-- FULLTIME -->
+        <div class="cv-subsection-title" style="margin-top: 25px;">FULLTIME</div>
+
+        <div class="cv-item">
+          <div class="cv-item-header">
+            <span class="cv-company">PT. Putera Rackindo Sejahtera (Prodesign - PIRA)</span>
+            <span class="cv-year">2018 - 2025</span>
+          </div>
+          <div class="cv-role">Penanggungjawab Marketplace di Divisi Online</div>
+          <table class="cv-details-table">
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Mendesain interior dan produk.</li></ul></td>
+              <td class="tool-cell">3ds Max</td>
+            </tr>
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Mendesain tampilan produk di marketplace.</li></ul></td>
+              <td class="tool-cell">Adobe Illustrator + Adobe Photoshop</td>
+            </tr>
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Mendesain banner untuk toko di marketplace.</li></ul></td>
+              <td class="tool-cell">Adobe Illustrator + Adobe Photoshop</td>
+            </tr>
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Mendesain box packing.</li></ul></td>
+              <td class="tool-cell">Adobe Illustrator + Adobe Photoshop</td>
+            </tr>
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Mendesain logo brand.</li></ul></td>
+              <td class="tool-cell">Adobe Illustrator</td>
+            </tr>
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Mendesain UI website.</li></ul></td>
+              <td class="tool-cell">Adobe Illustrator</td>
+            </tr>
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Fotografi dan cropping foto produk.</li></ul></td>
+              <td class="tool-cell">Adobe Photoshop</td>
+            </tr>
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Edit video untuk penyesuaian kebutuhan marketplace.</li></ul></td>
+              <td class="tool-cell">Adobe Premiere Pro</td>
+            </tr>
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Input produk &amp; setting harga di marketplace</li></ul></td>
+              <td class="tool-cell">Microsoft Excel</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="cv-item">
+          <div class="cv-item-header">
+            <span class="cv-company">CV. Rodalink (Anak usaha Polygon)</span>
+            <span class="cv-year">2018</span>
+          </div>
+          <div class="cv-role">Multimedia di Tim Marketing</div>
+          <table class="cv-details-table">
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Mendesain poster kegiatan.</li></ul></td>
+              <td class="tool-cell">Adobe Illustrator</td>
+            </tr>
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Mendesain banner-banner untuk website.</li></ul></td>
+              <td class="tool-cell">Adobe Photoshop</td>
+            </tr>
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Cropping foto sepeda.</li></ul></td>
+              <td class="tool-cell">Adobe Photoshop</td>
+            </tr>
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Merekam kegiatan (Foto &amp; Video (Pra Produksi)).</li></ul></td>
+              <td class="tool-cell"></td>
+            </tr>
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Edit video (Pasca Produksi).</li></ul></td>
+              <td class="tool-cell">Adobe Premiere Pro</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="cv-item">
+          <div class="cv-item-header">
+            <span class="cv-company">Good News From Indonesia (PT. Garuda Nyala Fajar Indonesia)</span>
+            <span class="cv-year">2016 - 2018</span>
+          </div>
+          <div class="cv-role">Desain Grafis</div>
+          <table class="cv-details-table">
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Mendesain dan melayout infografis</li></ul></td>
+              <td class="tool-cell">Adobe Illustrator</td>
+            </tr>
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Mendesain dan melayout materi postingan sosial media.</li></ul></td>
+              <td class="tool-cell">Adobe Illustrator</td>
+            </tr>
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Mendesain dan melayout materi majalah digital.</li></ul></td>
+              <td class="tool-cell">Adobe Illustrator</td>
+            </tr>
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Membuat ilustrasi untuk merchandise kaos.</li></ul></td>
+              <td class="tool-cell">Adobe Illustrator</td>
+            </tr>
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Merekam konten khusus (foto &amp; video).</li></ul></td>
+              <td class="tool-cell"></td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="cv-item">
+          <div class="cv-item-header">
+            <span class="cv-company">Studio 2G Bali</span>
+            <span class="cv-year">2016</span>
+          </div>
+          <div class="cv-role">Drafter Modelling 3d</div>
+          <table class="cv-details-table">
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Mendesain model bangunan sesuai gambar teknik permintaan klien.</li></ul></td>
+              <td class="tool-cell">3ds Max</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="cv-item">
+          <div class="cv-item-header">
+            <span class="cv-company">PT Radar Media Surabaya</span>
+            <span class="cv-year">2015</span>
+          </div>
+          <div class="cv-role">Layouter dan Desain Iklan</div>
+          <table class="cv-details-table">
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Melayout halaman iklan baris.</li></ul></td>
+              <td class="tool-cell">Pagemaker &amp; Adobe Indesign</td>
+            </tr>
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Mendesain iklan sesuai permintaan klien.</li></ul></td>
+              <td class="tool-cell">Adobe Photoshop</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="cv-item">
+          <div class="cv-item-header">
+            <span class="cv-company">PT Tiga Meru Abadi Surabaya</span>
+            <span class="cv-year">2014</span>
+          </div>
+          <div class="cv-role">Drafter (2 bulan Kerja Praktek dan 1 bulan Freelance)</div>
+          <table class="cv-details-table">
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Mendesain furnitur klien (hotel dan personal)</li></ul></td>
+              <td class="tool-cell">Autocad dan Sketchup</td>
+            </tr>
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Mendesain interior kereta api.</li></ul></td>
+              <td class="tool-cell">Autocad dan Sketchup</td>
+            </tr>
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Membuat logo anak usaha perusahaan.</li></ul></td>
+              <td class="tool-cell">Coreldraw</td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- PENDIDIKAN -->
+        <div class="cv-section-title">PENDIDIKAN</div>
+        <div class="cv-item">
+          <div class="cv-item-header">
+            <span class="cv-company">S1 SARJANA TEKNIK</span>
+            <span class="cv-year">2010 - 2015</span>
+          </div>
+          <table class="cv-details-table">
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Jurusan Desain Interior</li></ul></td>
+              <td class="tool-cell"></td>
+            </tr>
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Fakultas Teknik Sipil dan Perencanaan</li></ul></td>
+              <td class="tool-cell"></td>
+            </tr>
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Institut Teknologi Sepuluh Nopember Surabaya</li></ul></td>
+              <td class="tool-cell"></td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- INFORMASI TAMBAHAN -->
+        <div class="cv-section-title">INFORMASI TAMBAHAN</div>
+
+        <div class="cv-item">
+          <div class="cv-subsection-title" style="margin-top:0;">Pelatihan</div>
+          <table class="cv-details-table">
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>TEDxITS: An EscalaTED Life 2013</li></ul></td>
+              <td class="tool-cell">TEDxITS</td>
+            </tr>
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Space Syntax Seminar 2014</li></ul></td>
+              <td class="tool-cell">HDII (Himpunan Desainer Interior Indonesia)</td>
+            </tr>
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Creative Intensive Workshop 2016</li></ul></td>
+              <td class="tool-cell">Pinastika Creative Festival XVII Do Well Yogyakarta</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="cv-item">
+          <div class="cv-subsection-title">Prestasi</div>
+          <table class="cv-details-table">
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>Juara 3 Lomba Desain Body Kereta Api 2013</li></ul></td>
+              <td class="tool-cell">PT. KAI</td>
+            </tr>
+            <tr>
+              <td class="task-cell"><ul class="cv-list"><li>8 kali menang kontes logo di 99designs</li></ul></td>
+              <td class="tool-cell">99designs</td>
+            </tr>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
