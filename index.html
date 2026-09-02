@@ -21,7 +21,6 @@
       font-weight: 700;
     }
 
-    /* Container Tombol Filter */
     .filter-container {
       display: flex;
       justify-content: center;
@@ -73,7 +72,7 @@
     .card-image-wrapper {
       width: 100%;
       aspect-ratio: 1 / 1;
-      background-color: #18181b;
+      background-color: #e4e4e7;
       position: relative;
       overflow: hidden;
     }
@@ -146,7 +145,6 @@
     const statusText = document.getElementById('status');
     let semuaKartu = [];
 
-    // Fungsi membaca CSV
     function parseCSV(text) {
       const lines = text.split('\n');
       return lines.map(line => {
@@ -167,7 +165,6 @@
         const csvText = await resSheet.text();
         const rows = parseCSV(csvText);
 
-        // Mengambil data dan membuang baris pertama (Header: LINK, AKUN, CAPTION, TAG)
         const dataRows = rows.filter(row => row[0] && row[0].startsWith('http'));
 
         if (dataRows.length === 0) {
@@ -175,46 +172,28 @@
           return;
         }
 
-        statusText.style.display = 'none';
         const setTag = new Set();
 
-        for (let row of dataRows) {
-          // SESUAI STRUKTUR SHEET KAMU:
+        semuaKartu = dataRows.map(row => {
           const url = row[0];             // Kolom A: LINK
           const customAkun = row[1];      // Kolom B: AKUN
           const customCaption = row[2];   // Kolom C: CAPTION
           const rawTags = row[3] || '';   // Kolom D: TAG
+          const customGambar = row[4];   // Kolom E: GAMBAR (Direct Image Link)
 
           const tagsArray = rawTags.split(',').map(t => t.trim()).filter(t => t !== '');
           tagsArray.forEach(t => setTag.add(t));
 
-          try {
-            let cleanUrl = url.split('?')[0];
-            const response = await fetch(`https://api.microlink.io?url=${encodeURIComponent(cleanUrl)}`);
-            const result = await response.json();
-            
-            if (result.status !== 'success') continue;
-            
-            const data = result.data || {};
-            const gambar = data.image ? data.image.url : 'https://via.placeholder.com/400x400?text=No+Image';
-            
-            // Prioritaskan input dari Google Sheet kamu
-            const akun = customAkun ? customAkun : (data.publisher || 'Instagram');
-            const judul = customCaption ? customCaption : (data.title || 'Tanpa Judul');
+          return {
+            url,
+            gambar: customGambar || 'https://via.placeholder.com/400x400?text=No+Image',
+            akun: customAkun || 'Instagram',
+            judul: customCaption || 'Tanpa Judul',
+            tags: tagsArray
+          };
+        });
 
-            semuaKartu.push({
-              url,
-              gambar,
-              akun,
-              judul,
-              tags: tagsArray
-            });
-
-          } catch (err) {
-            console.error("Gagal memuat link:", url, err);
-          }
-        }
-
+        statusText.style.display = 'none';
         buatTombolFilter(Array.from(setTag));
         tampilkanKartu(semuaKartu);
 
@@ -240,7 +219,7 @@
         const kartuHTML = `
           <a href="${item.url}" target="_blank" class="card">
             <div class="card-image-wrapper">
-              <img src="${item.gambar}" alt="${item.judul}" loading="lazy">
+              <img src="${item.gambar}" alt="${item.judul}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x400?text=Gambar+Error'">
             </div>
             <div class="card-content">
               <span class="card-publisher">${item.akun}</span>
