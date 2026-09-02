@@ -3,175 +3,184 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portofolio Saya</title>
+  <title>Galeri Portofolio</title>
   <style>
-    <style>
-  body {
-    font-family: system-ui, -apple-system, sans-serif;
-    background-color: #f4f4f5;
-    margin: 0;
-    padding: 40px 20px;
-  }
+    * {
+      box-sizing: border-box;
+    }
 
-  h1 {
-    text-align: center;
-    margin-bottom: 30px;
-  }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f4f4f5;
+      margin: 0;
+      padding: 40px 20px;
+      color: #18181b;
+    }
 
-  /* CSS Grid untuk merapikan tata letak kartu */
-  .portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 700;
+    }
 
-  /* Styling kartu karya - PENTING agar semua kartu sama tinggi */
-  .card {
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease;
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    height: 100%; /* Pastikan semua kartu sama tinggi di setiap baris */
-  }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-  .card:hover {
-    transform: translateY(-4px);
-  }
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
 
-  /* Styling kartu karya - Bagian GAMBAR */
-  .card img {
-  width: 100%;
-  height: 250px;
-  object-fit: contain; /* Memastikan seluruh isi gambar masuk ke dalam kotak */
-  background-color: #f0f0f0; /* Memberi latar abu-abu lembut jika ada sisa ruang */
-  display: block;
-}
-    
-    /* --- PENGATURAN GAMBAR UTUH --- */
-    height: 250px; /* Atur tinggi kartu di sini */
-    object-fit: contain; /* Kunci agar gambar tidak terpotong */
-    background-color: #fafafa; /* Warna background untuk area kosong */
-    border-bottom: 1px solid #ddd;
-    display: block;
-    /* --- --- --- */
-  }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
 
-  .card-content {
-    padding: 16px;
-    flex-grow: 1; /* Pastikan content text menempati sisa ruang kartu */
-    display: flex;
-    flex-direction: column;
-  }
+    /* Wadah Gambar agar Proporsional */
+    .card-image-wrapper {
+      width: 100%;
+      height: 280px;
+      background-color: #ececec;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
 
-  .card-publisher {
-    /* --- PENGATURAN TEXT PUBLISHER LEBIH KECIL --- */
-    font-size: 10px; /* Ukuran text diperkecil */
-    color: #71717a;
-    text-transform: uppercase;
-    font-weight: bold;
-    margin-bottom: 4px;
-  }
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* Gambar akan tampil utuh 100% tanpa terpotong */
+      display: block;
+    }
 
-  .card-title {
-    /* --- PENGATURAN CAPTION LEBIH KECIL --- */
-    margin: 0;
-    font-size: 13px; /* Ukuran text caption diperkecil */
-    line-height: 1.4;
-    color: #333;
-    
-    /* Batasi jumlah baris text agar konsisten */
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* Batasi maksimal 2 baris text */
-    -webkit-box-orient: vertical;  
-    overflow: hidden;
-    /* --- --- --- */
-  }
+    /* Padding Teks Diperbaiki Agar Berjarak Rapi */
+    .card-content {
+      padding: 18px 20px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex-grow: 1;
+    }
 
-  .loading {
-    text-align: center;
-    color: #71717a;
-    font-size: 18px;
-  }
-</style>
+    .card-publisher {
+      font-size: 11px;
+      color: #71717a;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+    }
+
+    .card-title {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #27272a;
+      font-weight: 500;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .loading {
+      text-align: center;
+      color: #71717a;
+      font-size: 16px;
+    }
   </style>
 </head>
 <body>
 
   <h1>Galeri Portofolio</h1>
-
+  
   <div id="status" class="loading">Memuat portofolio...</div>
   <div class="portfolio-grid" id="portfolio"></div>
 
   <script>
-  // 1. TEMPELKAN LINK CSV GOOGLE SHEETS ANDA DI SINI
-  const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQOs2FCesmwrvVJIUbpPJG8gwl3RqZovqA6nwKRyslPGTC84hTMZZgXYvO2uf_uGXtEb5tOiMt0wS5y/pub?gid=0&single=true&output=csv";
+    const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQOs2FCesmwrvVJIUbpPJG8gwl3RqZovqA6nwKRyslPGTC84hTMZZgXYvO2uf_uGXtEb5tOiMt0wS5y/pub?gid=0&single=true&output=csv";
 
-  const container = document.getElementById('portfolio');
-  const statusText = document.getElementById('status');
+    const container = document.getElementById('portfolio');
+    const statusText = document.getElementById('status');
 
-  async function muatPortofolio() {
-    try {
-      const resSheet = await fetch(SHEET_CSV_URL);
-      const csvData = await resSheet.text();
+    async function muatPortofolio() {
+      try {
+        const resSheet = await fetch(SHEET_CSV_URL);
+        const csvData = await resSheet.text();
 
-      const lines = csvData.split('\n');
-      const daftarLink = lines
-        .map(line => line.trim().replace(/"/g, ''))
-        .filter(link => link.startsWith('http'));
+        const lines = csvData.split('\n');
+        const daftarLink = lines
+          .map(line => line.trim().replace(/"/g, ''))
+          .filter(link => link.startsWith('http'));
 
-      if (daftarLink.length === 0) {
-        statusText.innerText = "Belum ada link karya di Google Sheets.";
-        return;
-      }
-
-      statusText.style.display = 'none';
-
-      for (let url of daftarLink) {
-        try {
-          // Bersihkan URL Instagram dari parameter query (seperti ?igsh=...) agar metadata lebih stabil
-          let cleanUrl = url.split('?')[0];
-
-          // Pemanggilan API stabil tanpa parameter tambahan yang bikin error
-          const response = await fetch(`https://api.microlink.io?url=${encodeURIComponent(cleanUrl)}`);
-          const result = await response.json();
-          
-          if (result.status !== 'success') continue;
-          
-          const data = result.data;
-
-          const gambar = data.image ? data.image.url : 'https://via.placeholder.com/400x200?text=No+Image';
-          const judul = data.title || 'Tanpa Judul';
-          const sumber = data.publisher || 'Web Link';
-
-          const kartuHTML = `
-            <a href="${url}" target="_blank" class="card">
-              <img src="${gambar}" alt="${judul}">
-              <div class="card-content">
-                <span class="card-publisher">${sumber}</span>
-                <h3 class="card-title">${judul}</h3>
-              </div>
-            </a>
-          `;
-
-          container.innerHTML += kartuHTML;
-        } catch (err) {
-          console.error("Gagal memuat link:", url, err);
+        if (daftarLink.length === 0) {
+          statusText.innerText = "Belum ada link karya di Google Sheets.";
+          return;
         }
-      }
-    } catch (error) {
-      console.error("Gagal mengambil data dari Google Sheets:", error);
-      statusText.innerText = "Gagal memuat data dari Google Sheets. Pastikan akses link CSV sudah benar.";
-    }
-  }
 
-  muatPortofolio();
-</script>
+        statusText.style.display = 'none';
+
+        for (let url of daftarLink) {
+          try {
+            let cleanUrl = url.split('?')[0];
+            let gambarUrl = '';
+
+            // Trik khusus untuk link Instagram: ambil gambar utuh dari media embed resmi
+            if (cleanUrl.includes('instagram.com/p/') || cleanUrl.includes('instagram.com/reel/')) {
+              if (!cleanUrl.endsWith('/')) cleanUrl += '/';
+              gambarUrl = `${cleanUrl}media/?size=l`;
+            }
+
+            // Ambil metadata judul & publisher lewat Microlink
+            const response = await fetch(`https://api.microlink.io?url=${encodeURIComponent(cleanUrl)}`);
+            const result = await response.json();
+            const data = result.data || {};
+
+            // Jika bukan Instagram atau trik gambar Instagram gagal, gunakan gambar dari Microlink
+            if (!gambarUrl) {
+              gambarUrl = data.image ? data.image.url : 'https://via.placeholder.com/400x300?text=No+Image';
+            }
+
+            const judul = data.title || 'Tanpa Judul';
+            const sumber = data.publisher || 'Instagram';
+
+            const kartuHTML = `
+              <a href="${url}" target="_blank" class="card">
+                <div class="card-image-wrapper">
+                  <img src="${gambarUrl}" alt="${judul}" loading="lazy" onerror="this.src='${data.image?.url || ''}'">
+                </div>
+                <div class="card-content">
+                  <span class="card-publisher">${sumber}</span>
+                  <h3 class="card-title">${judul}</h3>
+                </div>
+              </a>
+            `;
+
+            container.innerHTML += kartuHTML;
+          } catch (err) {
+            console.error("Gagal memuat link:", url, err);
+          }
+        }
+      } catch (error) {
+        console.error("Gagal mengambil data dari Google Sheets:", error);
+        statusText.innerText = "Gagal memuat data dari Google Sheets.";
+      }
+    }
+
+    muatPortofolio();
+  </script>
 </body>
 </html>
