@@ -5,73 +5,96 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portofolio Saya</title>
   <style>
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      background-color: #f4f4f5;
-      margin: 0;
-      padding: 40px 20px;
-    }
+    <style>
+  body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: #f4f4f5;
+    margin: 0;
+    padding: 40px 20px;
+  }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
 
-    /* CSS Grid untuk merapikan tata letak kartu */
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+  /* CSS Grid untuk merapikan tata letak kartu */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 
-    /* Styling kartu karya */
-    .card {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-      transition: transform 0.2s ease;
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-    }
+  /* Styling kartu karya - PENTING agar semua kartu sama tinggi */
+  .card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Pastikan semua kartu sama tinggi di setiap baris */
+  }
 
-    .card:hover {
-      transform: translateY(-4px);
-    }
+  .card:hover {
+    transform: translateY(-4px);
+  }
 
-    .card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      background-color: #e4e4e7;
-    }
+  /* Styling kartu karya - Bagian GAMBAR */
+  .card img {
+    width: 100%;
+    
+    /* --- PENGATURAN GAMBAR UTUH --- */
+    height: 250px; /* Atur tinggi kartu di sini */
+    object-fit: contain; /* Kunci agar gambar tidak terpotong */
+    background-color: #fafafa; /* Warna background untuk area kosong */
+    border-bottom: 1px solid #ddd;
+    display: block;
+    /* --- --- --- */
+  }
 
-    .card-content {
-      padding: 16px;
-    }
+  .card-content {
+    padding: 16px;
+    flex-grow: 1; /* Pastikan content text menempati sisa ruang kartu */
+    display: flex;
+    flex-direction: column;
+  }
 
-    .card-publisher {
-      font-size: 12px;
-      color: #71717a;
-      text-transform: uppercase;
-      font-weight: bold;
-    }
+  .card-publisher {
+    /* --- PENGATURAN TEXT PUBLISHER LEBIH KECIL --- */
+    font-size: 10px; /* Ukuran text diperkecil */
+    color: #71717a;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
 
-    .card-title {
-      margin: 6px 0 0 0;
-      font-size: 16px;
-      line-height: 1.4;
-    }
+  .card-title {
+    /* --- PENGATURAN CAPTION LEBIH KECIL --- */
+    margin: 0;
+    font-size: 13px; /* Ukuran text caption diperkecil */
+    line-height: 1.4;
+    color: #333;
+    
+    /* Batasi jumlah baris text agar konsisten */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Batasi maksimal 2 baris text */
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+    /* --- --- --- */
+  }
 
-    .loading {
-      text-align: center;
-      color: #71717a;
-      font-size: 18px;
-    }
+  .loading {
+    text-align: center;
+    color: #71717a;
+    font-size: 18px;
+  }
+</style>
   </style>
 </head>
 <body>
