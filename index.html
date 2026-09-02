@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Galeri Portofolio</title>
+  <title>Galeri Portofolio Bahnoo</title>
   <style>
     * { box-sizing: border-box; }
 
@@ -11,8 +11,62 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background-color: #f4f4f5;
       margin: 0;
-      padding: 40px 20px;
+      padding: 0;
       color: #18181b;
+    }
+
+    /* --- STYLING NAVBAR BARU --- */
+    .navbar {
+      background-color: #ffffff;
+      border-bottom: 1px solid #e4e4e7;
+      padding: 16px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    }
+
+    .navbar-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 18px;
+      color: #18181b;
+      text-decoration: none;
+    }
+
+    .navbar-menu {
+      display: flex;
+      gap: 16px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+
+    .navbar-menu a {
+      text-decoration: none;
+      color: #52525b;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .navbar-menu a:hover,
+    .navbar-menu a.active {
+      color: #18181b;
+      font-weight: 600;
+    }
+    /* --- AKHIR STYLING NAVBAR --- */
+
+    .main-container {
+      padding: 40px 20px;
     }
 
     h1 {
@@ -131,11 +185,27 @@
 </head>
 <body>
 
-  <h1>Galeri Portofolio</h1>
-  
-  <div class="filter-container" id="filter-container"></div>
-  <div id="status" class="loading">Memuat portofolio...</div>
-  <div class="portfolio-grid" id="portfolio"></div>
+  <!-- NAVBAR ATAS -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="#" class="navbar-brand">Bahnoo Damar</a>
+      <ul class="navbar-menu">
+        <li><a href="#" class="active">Utama</a></li>
+        <li><a href="https://desain.bahnoo.com/" target="_blank">Blog Portofolio</a></li>
+        <li><a href="https://www.bahnoo.my.id/" target="_blank">Toko</a></li>
+        <li><a href="https://desain.bahnoo.com/p/curriculum-vitae.html" target="_blank">CV</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- KONTEN UTAMA GALERI -->
+  <div class="main-container">
+    <h1>Galeri Portofolio</h1>
+    
+    <div class="filter-container" id="filter-container"></div>
+    <div id="status" class="loading">Memuat portofolio...</div>
+    <div class="portfolio-grid" id="portfolio"></div>
+  </div>
 
   <script>
     const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQOs2FCesmwrvVJIUbpPJG8gwl3RqZovqA6nwKRyslPGTC84hTMZZgXYvO2uf_uGXtEb5tOiMt0wS5y/pub?gid=0&single=true&output=csv";
@@ -175,11 +245,11 @@
         const setTag = new Set();
 
         semuaKartu = dataRows.map(row => {
-          const url = row[0];             // Kolom A: LINK
-          const customAkun = row[1];      // Kolom B: AKUN
-          const customCaption = row[2];   // Kolom C: CAPTION
-          const rawTags = row[3] || '';   // Kolom D: TAG
-          const customGambar = row[4];   // Kolom E: GAMBAR (Direct Image Link)
+          const url = row[0];             
+          const customAkun = row[1];      
+          const customCaption = row[2];   
+          const rawTags = row[3] || '';   
+          const customGambar = row[4];   
 
           const tagsArray = rawTags.split(',').map(t => t.trim()).filter(t => t !== '');
           tagsArray.forEach(t => setTag.add(t));
